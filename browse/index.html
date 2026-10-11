@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> WAICAM </title>
+        <link rel="stylesheet" type="text/css" href="/styles.css">
+        <script src="/js/common.js"></script>
+    </head>
+    <body>
+        <div id="titlebar">
+            <div class="horizpadding"></div>
+            <div class="leftalign">
+                <span class="titlebarentry waicam"> WAICAM </span>
+            </div>
+            <div class="rightalign">
+                <a class="titlebarbutton titlebarentry" href="/">Home</a>
+                <a class="titlebarbutton titlebarentry disabledentry">Browse works</a>
+                <a class="titlebarbutton titlebarentry" href="/by-museum/">By museum</a>
+            </div>
+            <div class="horizpadding"></div>
+            <div class="horizpadding"></div>
+        </div>
+        <div id="main">
+            <div id="content">
+                <h1> Browse All Works </h1>
+                <span>
+                    Sort by:
+                </span>
+                <select name="sortworks" id="sortworks">
+                    <option value="default"> Default </option>
+                    <option value="by-title"> Alphabetical (work title) </option>
+                    <option value="by-artist"> Alphabetical (artist) </option>
+                </select>
+                <br>
+                <br>
+                <div id="allWorks">
+                </div>
+            </div>
+            <script src="/js/browse.js"></script>
+        </div>
+    </body>
+</html>
