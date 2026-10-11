@@ -46,18 +46,18 @@ async function loadRecords() {
 function sortRecords(records, options) {
     let result = records.concat();
 
-    if (options.sort !== "default") {
-        result.sort(function(a, b) {
-            switch(options.sort) {
-                case "by-title":
-                    return a.work.localeCompare(b.work);
-                case "by-artist":
-                    return a.artist.localeCompare(b.artist);
-                default:
-                    throw new Error();
-            }
-        });
-    }
+    result.sort(function(a, b) {
+        switch(options.sort) {
+            case "by-museum":
+                return a.institution.localeCompare(b.institution);
+            case "by-title":
+                return a.work.localeCompare(b.work);
+            case "by-artist":
+                return a.artist.localeCompare(b.artist);
+            default:
+                throw new Error();
+        }
+    });
 
     return result;
 }

@@ -13,8 +13,9 @@ async function getOrInitRecords() {
 
 document.addEventListener("DOMContentLoaded", async function() {
     let records = await getOrInitRecords();
+    let sortedRecords = sortRecords(records, { sort: "by-museum" });
 
-    displayRecords(allWorksElement, records);
+    displayRecords(allWorksElement, sortedRecords);
 });
 
 sortWorksSelector.addEventListener("change", async function() {
