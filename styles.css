@@ -1,10 +1,12 @@
 :root {
-  --titlebar-color: #C1DBC7;
-  --titlebar-dark: color-mix(in oklab, #000000 10%, var(--titlebar-color) 90%);
+    --titlebar-color: #C1DBC7;
+    --titlebar-dark: color-mix(in oklab, #000000 10%, var(--titlebar-color) 90%);
 
-  --content-color: /*#E8F7EE*/#FFF;
+    --content-color: /*#E8F7EE*/#FFF;
 
-  --margins-color: /*#C9D6EA;#DADDD8#C7D59F#D1D6C2#8E9690*/#E8F4EB;
+    --margins-color: /*#DADDD8#C7D59F#D1D6C2#8E9690*/#E8F4EB;
+
+    --select-color: #C9D6EA;
 }
 
 body {
@@ -93,6 +95,30 @@ body {
 
     border-left: 2px solid #999;
     border-right: 2px solid #999;
+}
+
+select {
+    appearance: none;
+
+    background-color: var(--select-color);
+
+    border-radius: 5px;
+    border: 0;
+
+    font-size: 14px;
+    padding: 6px 24px 6px 6px;
+
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%23333" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 4px top 7px;
+    background-size: 16px;
+
+    box-shadow: 0 0 0 2px color-mix(in oklab, #000000 10%, var(--select-color) 90%) inset;
+}
+
+:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px color-mix(in oklab, #000000 40%, var(--select-color) 60%) inset !important;
 }
 
 .gridcontainer {
