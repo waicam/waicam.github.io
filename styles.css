@@ -130,7 +130,8 @@ select:focus {
 }
 .displayedrecord {
     font-size: min(12px, 2.25vw);
-    padding-top: 6px;
+    padding-top: 8px;
+    padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
 
@@ -139,7 +140,16 @@ select:focus {
     border: 3px solid black;
     border-radius: 7px;
 }
-.worktitle {
+
+.info_title {
     font-size: min(16px, 3vw);
     font-weight: bold;
+    margin-bottom: 6px;
+}
+.info_institution {
+    font-weight: bold;
+}
+.info_collection {
+    position: relative;
+    left: 0.5vw;
 }

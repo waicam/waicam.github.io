@@ -1,3 +1,9 @@
+function assert(condition, message) {
+    if (!condition) {
+        throw new Error("Assertion failed (see traceback): " + message);
+    }
+}
+
 async function loadRecords() {
     let recordsResponse = await fetch("/data/data.tsv");
     let recordsText = await recordsResponse.text();
@@ -7,9 +13,8 @@ async function loadRecords() {
 
     for (let i = 1; i < recordsList.length; i ++) {
         let record = recordsList[i].split("\t");
-        if (record.length !== 8) {
-            throw new Error("Detected malformed record \"" + recordsList[i] + "\" (you need to fix it in data.csv!)");
-        }
+
+        assert(record.length === 8, "Detected malformed record \"" + recordsList[i] + "\" (you need to fix it in the sheet!)");
 
         let institution = record[0].trim();
         let artist = record[1].trim();
@@ -20,13 +25,15 @@ async function loadRecords() {
         let source = record[6].trim();
         let status = record[7].trim();
 
-        if (institution === "") {
+        if (institution === "" || artist === "" || work === "") {
             continue;
         }
 
         if (year === "n.d." || year === "-") {
             year = "";
         }
+
+        assert(record.institution || !record.collection, "Work should never have a collection but not an institution!");
 
         parsedRecords.push({
             institution,
@@ -72,40 +79,62 @@ function displayRecords(containerElement, records) {
         let created = document.createElement("div");
         created.className = "displayedrecord";
 
-        let workTitle = document.createElement("div");
-        workTitle.className = "worktitle";
-        workTitle.innerText = record.work;
-        created.appendChild(workTitle);
-
-        let workInfo = document.createElement("p");
+        let workInfo = document.createElement("div");
         workInfo.className = "workinfo";
-        let text = "";
+
+        let workTitle = document.createElement("div");
+        workTitle.className = "info_title";
+        workTitle.innerText = record.work;
+        workInfo.appendChild(workTitle);
 
         if (record.artist) {
-            text += record.artist;
-        }
-        if (record.artist && record.year) {
-            text += ", ";
-        }
-        if (record.year) {
-            text += record.year;
-        }
-        text += "\n";
-        if (record.medium) {
-            text += record.medium;
-        }
-        text += "\n";
-        if (record.institution) {
-            text += record.institution;
-        }
-        if (record.institution && record.collection) {
-            text += " — ";
-        }
-        if (record.collection) {
-            text += record.collection;
+            let artistElement = document.createElement("span");
+            artistElement.className = "info_artist";
+            artistElement.innerText = record.artist;
+            workInfo.appendChild(artistElement);
         }
 
-        workInfo.innerText = text;
+        if (record.artist && record.year) {
+            let commaNode = document.createTextNode(", ");
+            commaNode.innerText = ", ";
+            workInfo.appendChild(commaNode);
+        }
+
+        if (record.year) {
+            let yearElement = document.createElement("span");
+            yearElement.className = "info_year";
+            yearElement.innerText = record.year;
+            workInfo.appendChild(yearElement);
+        }
+
+        workInfo.appendChild(document.createElement("br"));
+
+        if (record.medium) {
+            let mediumElement = document.createElement("span");
+            mediumElement.className = "info_medium";
+            mediumElement.innerText = record.medium;
+            workInfo.appendChild(mediumElement);
+        }
+
+        workInfo.appendChild(document.createElement("br"));
+        workInfo.appendChild(document.createElement("br"));
+
+        if (record.institution) {
+            let institutionElement = document.createElement("span");
+            institutionElement.className = "info_institution";
+            institutionElement.innerText = record.institution;
+            workInfo.appendChild(institutionElement);
+        }
+        if (record.collection) {
+            let brElement = document.createElement("br");
+            workInfo.appendChild(brElement);
+
+            let collectionElement = document.createElement("span");
+            collectionElement.className = "info_collection";
+            collectionElement.innerText = record.collection;
+            workInfo.appendChild(collectionElement);
+        }
+
         created.appendChild(workInfo);
 
         gridContainer.appendChild(created);
