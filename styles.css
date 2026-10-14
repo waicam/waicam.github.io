@@ -1,6 +1,6 @@
 :root {
-    --titlebar-color: #C1DBC7;
-    --titlebar-dark: color-mix(in oklab, #000000 10%, var(--titlebar-color) 90%);
+    --bar-color: #C1DBC7;
+    --bar-dark: color-mix(in oklab, #000000 10%, var(--bar-color) 90%);
 
     --content-color: /*#E8F7EE*/#FFF;
 
@@ -28,16 +28,21 @@ body {
     margin-right: 0.3vw;
 }
 
-#titlebar {
-    background-color: var(--titlebar-color);
+.bar {
+    background-color: var(--bar-color);
     height: max(9vh, 60px);
     display: flex;
     flex-direction: row;
     align-items: center;
 
     user-select: none;
-
+}
+.titlebar {
     border-bottom: 2px solid #999;
+}
+.footerbar {
+    border-top: 2px solid #999;
+    height: max(5vh, 35px) !important;
 }
 .waicam {
     font-size: min(36px, 5vw);
@@ -45,18 +50,18 @@ body {
 
     margin: 1.8vw;
 }
-.titlebarentry {
+.barentry {
     text-decoration: none;
 }
 .disabledentry:hover {
     cursor: default !important;
 }
 .disabledentry {
-    background-color: var(--titlebar-dark) !important;
+    background-color: var(--bar-dark) !important;
 }
-.titlebarbutton {
+.barbutton {
     color: black;
-    background-color: var(--titlebar-color);
+    background-color: var(--bar-color);
     font-size: min(24px, 3.25vw);
     font-weight: bold;
 
@@ -67,9 +72,16 @@ body {
     padding-left: 1.5vw;
     padding-right: 1.5vw;
 }
-.titlebarbutton:hover {
+.barlink {
+    color: black;
+    background-color: var(--bar-color);
+    font-size: min(16px, 1.6vw);
+    text-decoration: underline;
     cursor: pointer;
-    background-color: var(--titlebar-dark);
+}
+.barbutton:hover {
+    cursor: pointer;
+    background-color: var(--bar-dark);
 }
 
 #main {
