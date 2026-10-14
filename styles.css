@@ -75,7 +75,7 @@ body {
 .barlink {
     color: black;
     background-color: var(--bar-color);
-    font-size: min(16px, 1.6vw);
+    font-size: min(16px, 2.5vw);
     text-decoration: underline;
     cursor: pointer;
 }
