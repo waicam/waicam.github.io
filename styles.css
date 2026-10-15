@@ -7,6 +7,8 @@
     --margins-color: /*#DADDD8#C7D59F#D1D6C2#8E9690*/#E8F4EB;
 
     --select-color: #C9D6EA;
+    --select-color-dark: color-mix(in oklab, #000000 10%, var(--select-color) 90%);
+    --select-color-darkest: color-mix(in oklab, #000000 40%, var(--select-color) 60%);
 }
 
 body {
@@ -122,12 +124,12 @@ select {
     font-size: min(14px, 2.6vw);
     padding: 6px 18px 6px 6px;
 
-    box-shadow: 0 0 0 2px color-mix(in oklab, #000000 10%, var(--select-color) 90%) inset;
+    box-shadow: 0 0 0 2px var(--select-color-dark) inset;
 }
 
 select:focus {
     outline: none;
-    box-shadow: 0 0 0 2px color-mix(in oklab, #000000 40%, var(--select-color) 60%) inset !important;
+    box-shadow: 0 0 0 2px var(--select-color-darkest) inset !important;
 }
 
 .gridcontainer {
