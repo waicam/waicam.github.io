@@ -71,7 +71,7 @@ function sortRecords(records, options) {
 
 function displayRecords(containerElement, records) {
     let gridContainer = document.createElement("div");
-    gridContainer.className = "gridcontainer";
+    gridContainer.className = "gridcontainer_works";
 
     for (let i in records) {
         let record = records[i];
